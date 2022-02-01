@@ -19,7 +19,15 @@
 	the query params from the url -->
 
 <!-- HTML -->
-<h1>{state}</h1>
+<svelte:head>
+	<title>Covid Tracker</title>
+</svelte:head>
+
+<div class="section header">
+	<div class="container">
+		<h1>Covid 19 - {state}</h1>
+	</div>
+</div>
 
 <CovidStat />
 <CovidChart />
