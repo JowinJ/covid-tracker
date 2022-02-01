@@ -23,7 +23,6 @@
 	//this sets the usStats in the above tags to a variable we can use
 	//in this page...
 	export let usStats;
-	console.log(usStats, 'usStats');
 </script>
 
 <!-- JS -->
@@ -40,7 +39,7 @@
 	</div>
 </div>
 
-<CovidStat />
+<CovidStat {usStats} />
 <CovidChart />
 <TableContainer />
 

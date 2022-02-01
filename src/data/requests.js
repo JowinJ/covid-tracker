@@ -7,7 +7,6 @@ async function usStats(){
     );
 
     return parsers.usStats(response.data);
-    // return response.data;
 
 }
 
