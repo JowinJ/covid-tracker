@@ -2,6 +2,7 @@
     file to be used by the server as well as the client -->
 <script context="module">
 	import stateNames from '../data/stateNames';
+	import requests from '../data/requests.js';
 
 	export async function preload(page, session) {
 		//session param is for login and sessions etc
@@ -21,17 +22,28 @@
 			return;
 		}
 		console.log(page);
-		return {
-			state: page.params['state'],
-		};
+
+		try {
+			// const state = 'AL';
+
+			const stats = await requests.stateStats(state);
+
+			return { state: page.params['state'] };
+		} catch (error) {
+			return console.log(`error in [state].svelte: ${error}`);
+		}
 	}
 </script>
 
+<!-- then you turn that into a prob with export let in the below script tag -->
 <script>
 	export let state;
+	export let stats;
 	import CovidStat from '../components/CovidStat.svelte';
 	import CovidChart from '../components/CovidChart.svelte';
 </script>
+
+<!-- code to preload api req data into vars goes in the module script tag -->
 
 <!-- The name of this file is in [], this is a way that you can grab
 	the query params from the url -->
@@ -47,7 +59,7 @@
 	</div>
 </div>
 
-<CovidStat />
+<CovidStat {stats} />
 <CovidChart />
 
 <!-- CSS -->
